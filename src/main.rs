@@ -16,9 +16,7 @@ fn main() -> Result<()> {
         }
         Some(Command::View { filename }) => {
             let viewer = Viewer::new();
-            let display = viewer.display(filename.as_path())?;
-            println!("{}", display);
-            Ok(())
+            viewer.display(filename.as_path())
         }
         None => Ok(()),
     }
