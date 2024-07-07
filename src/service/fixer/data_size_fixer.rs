@@ -1,7 +1,7 @@
-use std::error::Error;
 use std::fs;
 use std::path::Path;
 
+use anyhow::Result;
 use fit_rust::Fit;
 
 pub struct DataSizeFixer {}
@@ -12,7 +12,7 @@ impl DataSizeFixer {
     }
 
     #[must_use]
-    pub fn fix(&self, filename: &Path, expected_size: u8) -> Result<(), Box<dyn Error>> {
+    pub fn fix(&self, filename: &Path, expected_size: u8) -> Result<()> {
         println!("Fixing a data size...");
 
         let file = fs::read(filename)?;

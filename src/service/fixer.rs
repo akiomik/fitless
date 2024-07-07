@@ -1,10 +1,10 @@
 mod data_size_fixer;
 mod parse_error_fixer;
 
-use std::error::Error;
 use std::fs::File;
 use std::path::Path;
 
+use anyhow::Result;
 use fitparser;
 use fitparser::de::DecodeOption;
 use fitparser::ErrorKind;
@@ -19,7 +19,7 @@ impl Fixer {
     }
 
     #[must_use]
-    pub fn fix(&self, filename: &Path) -> Result<(), Box<dyn Error>> {
+    pub fn fix(&self, filename: &Path) -> Result<()> {
         println!("Tring to fix {:?}...", filename);
 
         let mut file = File::open(filename)?;

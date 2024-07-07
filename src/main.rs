@@ -1,5 +1,4 @@
-use std::error::Error;
-
+use anyhow::Result;
 use clap::Parser;
 
 use fitless::{
@@ -7,7 +6,7 @@ use fitless::{
     service::Fixer,
 };
 
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match &cli.command {

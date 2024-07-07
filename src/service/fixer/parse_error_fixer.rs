@@ -1,7 +1,7 @@
-use std::error::Error;
 use std::fs;
 use std::path::Path;
 
+use anyhow::Result;
 use fit_rust::Fit;
 
 use super::data_size_fixer::DataSizeFixer;
@@ -14,7 +14,7 @@ impl ParseErrorFixer {
     }
 
     #[must_use]
-    pub fn fix(&self, filename: &Path) -> Result<(), Box<dyn Error>> {
+    pub fn fix(&self, filename: &Path) -> Result<()> {
         println!("Fixing a parse error...");
 
         // Check file size
