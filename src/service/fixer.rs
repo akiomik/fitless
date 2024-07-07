@@ -88,6 +88,8 @@ impl Fixer {
             }
         }
 
+        // TODO: Add missing acitivity
+
         println!("All errors have been fixed.");
 
         Ok(())
