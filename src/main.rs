@@ -3,7 +3,7 @@ use clap::Parser;
 
 use fitless::{
     cli::{Cli, Command},
-    service::Fixer,
+    service::{Fixer, Viewer},
 };
 
 fn main() -> Result<()> {
@@ -13,6 +13,12 @@ fn main() -> Result<()> {
         Some(Command::Fix { filename }) => {
             let fixer = Fixer::new();
             fixer.fix(filename.as_path())
+        }
+        Some(Command::View { filename }) => {
+            let viewer = Viewer::new();
+            let display = viewer.display(filename.as_path())?;
+            println!("{}", display);
+            Ok(())
         }
         None => Ok(()),
     }

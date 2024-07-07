@@ -12,4 +12,11 @@ pub enum Command {
         #[arg(value_name = "FILE")]
         filename: PathBuf,
     },
+
+    /// Display .fit file
+    View {
+        /// A .fit filename to display
+        #[arg(value_name = "FILE")]
+        filename: PathBuf,
+    },
 }
