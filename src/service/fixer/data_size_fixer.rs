@@ -2,7 +2,6 @@ use std::fs;
 use std::path::Path;
 
 use anyhow::Result;
-use fit_rust::Fit;
 
 pub struct DataSizeFixer {}
 
@@ -12,15 +11,14 @@ impl DataSizeFixer {
     }
 
     #[must_use]
-    pub fn fix(&self, filename: &Path, expected_size: u8) -> Result<()> {
+    pub fn fix(&self, filename: &Path, expected_size: u32) -> Result<()> {
         println!("Fixing a data size...");
 
-        let file = fs::read(filename)?;
-        let mut fit = Fit::read(file)?;
-        let mut header = fit.header;
-        header.header_size = expected_size;
-        fit.header = header;
-        fit.write(filename)?;
+        let mut file = fs::read(filename)?;
+        for (i, byte) in expected_size.to_le_bytes().iter().enumerate() {
+            file[4 + i] = *byte;
+        }
+        fs::write(filename, file)?;
 
         println!("A data size has been fixed.");
 

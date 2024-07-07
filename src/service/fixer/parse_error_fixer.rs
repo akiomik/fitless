@@ -30,11 +30,10 @@ impl ParseErrorFixer {
                 expected_data_size, actual_data_size
             );
 
-            // TODO: Check expected_data_size must be within u8 range
+            // TODO: Check expected_data_size must be within u32 range
             let data_size_fixer = DataSizeFixer::new();
-            data_size_fixer.fix(filename, expected_data_size as u8)?;
+            data_size_fixer.fix(filename, expected_data_size as u32)?;
         }
-
         println!("A parse error has been fixed.");
 
         Ok(())
