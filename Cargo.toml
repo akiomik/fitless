@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.86"
 clap = { version = "4.5.8", features = ["derive"] }
+crossterm = "0.27.0"
 fit = "0.5.0"
 fit-rust = "0.1.8"
 fit_file = "0.6.0"
