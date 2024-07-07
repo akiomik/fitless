@@ -4,7 +4,7 @@ use clap::Parser;
 
 use fitless::{
     cli::{Cli, Command},
-    service::fixer::Fixer,
+    service::Fixer,
 };
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -13,7 +13,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     match &cli.command {
         Some(Command::Fix { filename }) => {
             let fixer = Fixer::new();
-            fixer.fix(filename)
+            fixer.fix(filename.as_path())
         }
         None => Ok(()),
     }

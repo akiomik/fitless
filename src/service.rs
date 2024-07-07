@@ -1,1 +1,3 @@
-pub mod fixer;
+mod fixer;
+
+pub use fixer::Fixer;
