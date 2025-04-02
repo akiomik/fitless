@@ -5,7 +5,7 @@ use crossterm::terminal;
 use fitparser::profile::MesgNum;
 use pager::Pager;
 use tabled::{
-    settings::{peaker::PriorityMax, Settings, Style, Width},
+    settings::{peaker::Priority, Settings, Style, Width},
     Table, Tabled,
 };
 
@@ -32,7 +32,7 @@ impl Viewer {
 
         let terminal_width = terminal::size()?.0 as usize;
         let table_settings = Settings::default()
-            .with(Width::wrap(terminal_width).priority::<PriorityMax>())
+            .with(Width::wrap(terminal_width).priority(Priority::max(true)))
             .with(Width::increase(terminal_width));
         let mut table = Table::new(records);
         table.with(Style::modern()).with(table_settings);
